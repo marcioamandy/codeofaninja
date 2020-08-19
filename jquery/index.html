@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Tutorial for Beginners</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div>
+            <input type="text" id="myDatepicker" placeholder="Click to pick date" />
+        </div>
+        <button id='myButton'>Click to Slide or Toggle</button>
+        <div id="divfuncionario" style="display: none;">
+            <p>
+                Autorizo a Eletrobras a fazer o desconto na folha de pagamento das importâncias referentes às contribuições mensais de filiados (0,6% do salário base), em favor da Associação dos Empregados da Eletrobras - AEEL, conforme fixado por Assembléia Geral
+            </p>
+        </div>
+        <div id="divaposentado">
+            <span>
+                Autorizo a Eletrobras a fazer o desconto na folha de pagamento das importâncias referentes às contribuições mensais de filiados (0,4% do salário base), em favor da Associação dos Empregados da Eletrobras - AEEL, conforme fixado por Assembléia Geral
+            </span>
+        </div>
+        
+        <div class="row">
+            <h1>Cadastre-se</h1>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                Cadastre seus dados no formulário ao lado para finalizar sua compra conosco!
+            </div>
+            <div class="col-md-9">
+                <form>
+                    <div class="form-group">
+                        <label for="nome_completo">
+                            * Digite seu nome completo:
+                        </label> 
+                        <input class="form-control" name="nome_completo" required="" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">
+                            * Informe seu e-mail:
+                        </label> 
+                        <input class="form-control" name="mail" required="" type="email" />
+                    </div>
+                    <p></p>
+                    <div class="container-fluid">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="idade">
+                                    Informe sua idade:
+                                </label> 
+                                <input class="form-control" max="110" min="18" name="idade" required="" type="number" />
+                            </div>
+                            <div class="form-group">
+                                <label for="genero" name="labGenero">
+                                    Informe seu gênero sexual: <lable id="lblPercentual">0,6%</lable>
+                                </label>
+                                <br /> 
+                                <input name="genero" type="radio" value="masculino" /> Masculino<br /> 
+                                <input name="genero" type="radio" value="feminino" /> Feminino
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="data_pgto">
+                                    Informe a melhor data para pagamento:
+                                </label> 
+                                <input class="form-control" name="data_pgto" required="" type="date"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="conheceu">
+                                    Como conheceu nosso site?
+                                </label>
+                                <br /> 
+                                <input name="google" type="checkbox" value="masculino" /> 
+                                Google<br /> 
+                                <input name="amigos" type="checkbox" value="feminino" /> 
+                                Amigos<br /> 
+                                <input name="revistas_jornais" type="checkbox" value="feminino" /> 
+                                Revistas e Jornais
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="cor_favorita">
+                                    qual a sua cor favorita?
+                                </label>
+                                <br /> 
+                                <input class="form-control" name="cor_favorita" type="color" />
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="form-group" align="center">
+                        <button class="btn btn-lg btn-success" type="submit"> 
+                            Enviar dados 
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $("#myButton").click( ()=> {
+            $("#divaposentado").slideToggle("show");
+            $("#divfuncionario").slideToggle("slow");
+
+        });
+
+        $(document).ready(()=>{
+            let inputElement = document.querySelectorAll('input[name=genero]');
+            let labelElement = document.querySelector('label[name=labGenero]');
+            let perElement = document.querySelector('#lblPercentual');
+
+            console.log(labelElement);
+            console.log(perElement);
+            inputElement.forEach((value)=>{
+                value.onclick = (event)=>{
+               if (event.target.value === "masculino"){
+                    labelElement.textContent = "0,6%";
+               }
+               else if (event.target.value === "feminino"){
+                    labelElement.textContent = "0,4%";
+               }
+            }
+        });
+    });
+    </script>
+    <script>
+        $( "#myDatepicker" ).datepicker();
+    </script>
+</body>
+</html>
