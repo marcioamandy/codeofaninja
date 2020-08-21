@@ -53,7 +53,10 @@
                     $stmt->bindParam(':created', $created);
                     
                     // Execute the query
+                    echo('Entrou aqui 1111');
                     if($stmt->execute()){
+                        echo('Entrou aqui 2222');
+                        die();
                         // now, if image is not empty, try to upload the image
                         if($image){
                         
