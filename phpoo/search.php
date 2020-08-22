@@ -17,7 +17,7 @@ $category = new Category($db);
 // get search term
 $search_term=isset($_GET['s']) ? $_GET['s'] : '';
   
-$page_title = "You searched for \"{$search_term}\"";
+$page_title = "Sua pesquisa foi sobre \"{$search_term}\"";
 include_once "layout_header.php";
   
 // query products

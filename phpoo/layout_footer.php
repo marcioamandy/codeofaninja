@@ -12,12 +12,13 @@
     
     <script>
     // JavaScript for deleting product
-    $(document).on('click', '.delete-object', function(){
+    // Identifica se o botão de delete da grade foi acionado.
+    $(document).on('click', '.delete-object', ()=>{
     
         var id = $(this).attr('delete-id');
     
         bootbox.confirm({
-            message: "<h4>Are you sure?</h4>",
+            message: "<h4>Tem certeza que quer deletar o item?</h4>",
             buttons: {
                 confirm: {
                     label: '<span class="glyphicon glyphicon-ok"></span> Yes',
@@ -28,15 +29,15 @@
                     className: 'btn-primary'
                 }
             },
-            callback: function (result) {
+            callback: (result)=> {
     
-                if(result==true){
+                if(result===true){
                     $.post('delete_product.php', {
                         object_id: id
-                    }, function(data){
+                    }, (data)=>{
                         location.reload();
-                    }).fail(function() {
-                        alert('Unable to delete.');
+                    }).fail(()=> {
+                        alert('Falha ao deletar.');
                     });
                 }
             }
@@ -44,6 +45,42 @@
     
         return false;
     });
+
+    // habilita e desabilita todos os checkbox da grade
+    $("#checkTodos").change(()=> {
+        $("input:checkbox").prop('checked', $(this).prop("checked"));
+    });
+
+    // Verifica se o botão de deletar todos os selecionados foi clicado
+     $(document).on('click', '#removeall', ()=>{
+    
+        bootbox.confirm({
+             message: "<h4>Tem certeza que deseja remover os itens selecionados?</h4>",
+             buttons: {
+                 confirm: {
+                     label: '<span class="glyphicon glyphicon-ok"></span> Yes',
+                     className: 'btn-danger'
+                 },
+                 cancel: {
+                     label: '<span class="glyphicon glyphicon-remove"></span> No',
+                     className: 'btn-primary'
+                 }
+             },
+             callback: (result)=> {
+
+                 if(result===true){
+                     $.post('delete_product.php?s=all', (data)=>{
+                         location.reload();
+                     }).fail(()=> {
+                         alert('Falha ao deletar.');
+                     });
+                 }
+             }
+         });
+
+         return false;
+     });
+
     </script>
 </body>
 </html>
