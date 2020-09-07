@@ -1,0 +1,21 @@
+#Fix Rewrite
+Options -Multiviews
+ 
+# Mod Rewrite
+Options +FollowSymLinks
+RewriteEngine on
+RewriteBase /cursoPHPNinja/phpoo/
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+ 
+# used for php pages such as "yoursite.com/login.php" will become "yoursite.com/login/"
+
+#Passando parametro de numeros somente
+#RewriteRule ^([0-9]+)\/?$ products.php?param=$1 [NC]
+
+#Passando parametro de cartacter e numeros
+#RewriteRule ^([a-z]+)\/([0-9]+)\/?$ products.php?param=$1&param2=$2 [NC]
+
+#Definindo que o nome do arquivo e a rota
+RewriteRule ^([a-z]+)\/?$ $1.php [NC]
